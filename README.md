@@ -17,7 +17,7 @@ Cross-channel marketing performance at a glance.
 
 # SQL file for data transformation
 * Assumption made: Engagement rate was standardized as total measurable interactions divided by impressions to allow cross-platform comparison.
-* [unified_ads_data.sql](https://github.com/khushbuupatel/Cross-channel-Marketing-Performance-Dashboard/blob/main/unified_ads_data.sql)
+* [unified_ads_data.sql](https://github.com/khushbuupatel/Marketing-Performance-Dashboard/blob/main/unified_ads_data.sql)
 
 ---
 
