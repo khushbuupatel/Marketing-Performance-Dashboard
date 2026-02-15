@@ -1,5 +1,6 @@
 USE DATABASE MARKETING_DB;
 
+-- create a unified table to consolidate ad data from multiple sources
 CREATE OR REPLACE TABLE unified_ads (
     date DATE,
     source STRING,
@@ -16,7 +17,9 @@ CREATE OR REPLACE TABLE unified_ads (
     engagement_rate NUMBER(38,6)
 );
 
+-- insert data from multiple sources
 INSERT INTO unified_ads
+
 SELECT
     date,
     'facebook' AS source,
@@ -32,7 +35,9 @@ SELECT
     (engagement_rate * impressions) AS engagements,
     engagement_rate AS engagement_rate
 FROM marketing_db.public.facebook_ads
+    
 UNION ALL
+    
 SELECT
     date,
     'tiktok' AS source,
@@ -48,7 +53,9 @@ SELECT
     (likes + shares + comments) AS engagements,
     CASE WHEN impressions > 0 THEN (likes + shares + comments) * 1.0 / impressions ELSE 0 END AS engagement_rate
 FROM marketing_db.public.tiktok_ads
+    
 UNION ALL
+    
 SELECT
     date,
     'google' AS source,
@@ -60,7 +67,7 @@ SELECT
     clicks,
     cost AS spend,
     conversions,
-    null as video_views,
+    NULL as video_views,
     NULL AS engagements,
     NULL AS engagement_rate
 FROM marketing_db.public.google_ads;
